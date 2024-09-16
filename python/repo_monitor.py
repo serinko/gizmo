@@ -6,7 +6,7 @@ from datetime import datetime
 
 path_to_repo = "" # ADD HERE TARGET REPO FULL PATH (WITHOUT THE END .git) LIKE: "/home/user/repos/foo"
 if path_to_repo == "":
-  prompt = "Enter full path to target repo (without .git suffix), ie: /home/user/repos/foo"
+  prompt = "Enter full path to target repo (without .git suffix), ie: /home/user/repos/foo"\n"
   path_to_repo = output(prompt)
 
 command_pull = f"cd {path_to_repo} && git pull"
