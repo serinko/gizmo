@@ -7,27 +7,40 @@ from colorama import Fore, Back, Style
 import pandas as pd
 import sys
 
-def create_table(csv):
-    md = to_markdown(csv)
+def create_markdown(csv, args):
+    if args.index == True:
+        md = csv.to_markdown()
+    else:
+        md = csv.to_markdown(index=False)
     return md
+
+def create_table(csv, args):
+    if args.index == True:
+        table = csv.to_markdown(tablefmt="grid")
+    else:
+        table = csv.to_markdown(tablefmt="grid", index=False)
+    return table
 
 def import_csv(args):
     file = args.file
-    if args.index:
+    if args.index == True:
         csv = pd.read_csv(file)
     else:
-        csv = pd.read_csv(file, index=False)
+        csv = pd.read_csv(file, index_col=False)
+        csv.reset_index(drop=True, inplace=True)
     return csv
 
 def display_file(args):
     """Display csv file as a sorted page or a table"""
     csv = import_csv(args)
     if args.table:
-        entry = create_table(csv)
+        data = create_table(csv, args)
+    elif args.markdown:
+        data = create_markdown(csv, args)
     else:
-        entry = csv
+        data = csv
 
-    print(entry)
+    print(data)
 
 def panic(msg):
     """Error message print"""
@@ -46,8 +59,9 @@ def parser_main():
     # Parser arguments
     parser.add_argument("-V","--version", action="version", version='%(prog)s 1.0.0')
     parser.add_argument("file", help="csv file name" )
+    parser.add_argument("-m","--markdown", default=False, action="store_true", help="Display csv in markdown")
     parser.add_argument("-t","--table", default=False, action="store_true", help="Display csv as a table")
-    parser.add_argument("-i","--index", default=True, action="store_false", help="Display csv without an index column")
+    parser.add_argument("-i","--index", default=True, action="store_false", help="Display csv without an index column (works only with -m and -t options")
 
     parser.set_defaults(func=display_file)
     args = parser.parse_args()
@@ -61,4 +75,3 @@ def parser_main():
 
 if __name__ == '__main__':
     parser_main()
-  
