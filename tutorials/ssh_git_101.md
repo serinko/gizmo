@@ -211,5 +211,40 @@ git commit -am "intialise ssh git tutorial"
 ```sh
 git push origin feature/ssh-git-101-tutorial
 ```
+- The output:
+```
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (8/8), 5.24 KiB | 5.24 MiB/s, done.
+Total 8 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 1 local object.
+remote:
+remote: Create a pull request for 'feature/ssh-git-101-tutorial' on GitHub by visiting:
+remote:      https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutorial
+remote:
+To ssh://github_serinko/serinko/gizmo.git
+ * [new branch]      feature/ssh-git-101-tutorial -> feature/ssh-git-101-tutorial
+```
+- Note the message with the generated link: [https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutorial(https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutorial)]
 
-7. Open the Github link and create a Pull Request
+7. Create a Pull Request (PR): Visit the Github url and edit the PR description:
+- On the first landing, I can see initial rather empty description
+![](images/github-pr-landing-view)
+- I will edit it so there is:
+    - A simple Title and useful description of the PR
+    - Assing myself to finish this PR
+    - If the repo had a reviewer I would chose them
+    - Added a Label
+    - Ensure that comparison on top is to the right base branch where I eventually want to merge to
+    - Change `Create pull request` to `Draft pull request` as I do want to publish this state but don't want it to be reviewed just yet
+- The result
+
+![](images/github-pr-edited-view)
+
+8. Finish my works: save, add (as I created a new dir with images isnce the last commits), commit, push ... repeat steps above as many times as I need on as many files within the repo as needed
+
+9. Click on `Ready for Review`
+
+10. Notify the reviewer and wait for their comments if there is something to be changed
