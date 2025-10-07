@@ -196,4 +196,20 @@ git add tutorials/ssh_git_101.md
 ```sh
 git commit -am "intialise ssh git tutorial"
 ```
+- The output:
+```
+[feature/ssh-git-101-tutorial a82141a] intialise ssh git tutorial
+ 1 file changed, 199 insertions(+)
+ create mode 100644 tutorials/ssh_git_101.md
+```
 
+5. Do more work - like writing this and next point and follow the flow of:
+- Save file
+- Commit changes
+
+6. Push: When my writing is finished for the day I will push it up:
+```sh
+git push origin feature/ssh-git-101-tutorial
+```
+
+7. Open the Github link and create a Pull Request
