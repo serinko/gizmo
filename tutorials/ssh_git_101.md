@@ -1,6 +1,6 @@
 # SSH & git Beginner Tutorial
 
-This how to guide is for people who want to start working with remote repostiories using [SSH (Secure Shell)](https://www.ssh.com/academy/ssh) and [git](https://git-scm.com). It's written in a step-by-step detailed form to understand the basics while it abstracts away the complexity of these tools. Therefore this tutorial contains a bit of information and reference while not going too deep to confuse the user. 
+This how to guide is for people who want to start working with remote repositories using [SSH (Secure Shell)](https://www.ssh.com/academy/ssh) and [git](https://git-scm.com). It's written in a step-by-step detailed form to understand the basics while it abstracts away the complexity of these tools. Therefore this tutorial contains a bit of information and reference while not going too deep to confuse the user. 
 
 **The aim is to make a user familiar with remote collaborative work, where all files are locally stored in the users computer. This knowledge allows for working offline and in parallel from other contributors, creating own branches, merging them via Pull requests back to the remote repository.**
 
@@ -16,7 +16,7 @@ To begin you need a laptop / desktop and approx 60-90 min to have time to get fa
 
 ## SSH
 
-Secure Shell is a protocol that uses encryption to secure the connection between a client and a server - your computer and a remote computer. All user authentication, commands, output, and file transfers are encrypted to protect against attacks in the network. Server can be self hosted macvhine or for example a Github repository. 
+Secure Shell is a protocol that uses encryption to secure the connection between a client and a server - your computer and a remote computer. All user authentication, commands, output, and file transfers are encrypted to protect against attacks in the network. Server can be self hosted machine or for example a Github repository. 
 
 Basic SSH diagram taken from [SSH documentation page](https://www.ssh.com/academy/ssh):
 
@@ -26,7 +26,7 @@ Basic SSH diagram taken from [SSH documentation page](https://www.ssh.com/academ
 
 ### SSH Setup
 
-Before we begin to setup a SSH keypair, let's make sure we have installed and opened a password manager. In case you don't use any, start with [downloading KeePassXC](https://keepassxc.org/download/).
+Before we begin to setup a SSH key-pair, let's make sure we have installed and opened a password manager. In case you don't use any, start with [downloading KeePassXC](https://keepassxc.org/download/).
 
 Then generate your SSH key and store the access in you KeePassXC, following these steps:
 
@@ -58,7 +58,7 @@ ssh-keygen -t ed25519 -C "<EMAIL>" -f ~/.ssh/<SSH-KEY-NAME>
 > This setting is optional but highly recommended as it means that your key will work automatically but only when your KeePassXC is unlocked
 - In the key entry click on `SSH Agent` on the left side bar
 - On top tick these boxes:
-    - `Addkey to agent when database is opened`
+    - `Add key to agent when database is opened`
     - `Remove key from agent when database is locked`
 - In `Private Key` pane, add a key by `External file` clicking on `Browse` and navigating to `.ssh/` choosing the key you just created
 - Click on `Add to agent`
@@ -70,7 +70,7 @@ Congratulation, you just created your SSH key pair.
 
 > Git is a [free and open source](https://git-scm.com/about/free-and-open-source) distributed version control system designed to handle everything from small to very large projects with speed and efficiency. 
 
-We use git as it's the most commonly known tool for distriburted collaboartion. You can read more about [git on their page](https://git-scm.com/).
+We use git as it's the most commonly known tool for distributed collaboration. You can read more about [git on their page](https://git-scm.com/).
 
 ### Install git
 
@@ -79,7 +79,7 @@ Most systems already have git installed by default, check it out with entering t
 git --version
 ```
 
-If git doesn't exist in your system, [downloand and install it](https://git-scm.com/downloads), or use your package management system (the place from where you install tools). For Debian based systems run
+If git doesn't exist in your system, [download and install it](https://git-scm.com/downloads), or use your package management system (the place from where you install tools). For Debian based systems run
 ```sh
 sudo apt install git
 ```
@@ -99,7 +99,7 @@ git clone git@<REPOSTIORY_URL>:<USER>/<REPO>.git
 ```sh
 git clone git@github.com:serinko/gizmo.git
 ```
-- Now you can open any file from that repostiry directly in your computer and edit the files
+- Now you can open any file from that repository directly in your computer and edit the files
 
 ### Configure git
 
@@ -133,9 +133,11 @@ Every repository has a config git folder in its root directory called `.git`. Th
 | *Commit* | Store your changes on the current branch | `git commit -am "<SHORT_DESCRIPTION>"` | `git commit -am "intialise ssh git tutorial"` |
 | *Push* | Uploads my commits up to the remote so others can see them | `git push origin <MY_BRANCH_NAME>` | `git push origin serinko/feature/new-tutorial` |
 
+> **Note:** If during `git pull` or `git push` commands you see a message like: `Enter passphrase for key path/key ...` you may have your KeepassXC locked. Hit `ctrl` + `c` in terminal to cancel the command process, unlock your KeePassXC and redo the command
+
 #### Simple Work Flow
 
-Once we cloned the repository, it stays in our computer. However, other people have been making changes on it on their computers, pushing it up to the remote. Therefore for this to work in the cleanest way possible, we need to follow a common logic. In the simpliest form it goes like this:
+Once we cloned the repository, it stays in our computer. However, other people have been making changes on it on their computers, pushing it up to the remote. Therefore for this to work in the cleanest way possible, we need to follow a common logic. In the simplest form it goes like this:
 
 1. `git status` - Always start with informing yourself about the current state of the repository. In case your status shows your last working branch - make sure to switch to the main working one first:
 - `git checkout <MAIN_COMMON_BRANCH>` - For example `git checkout master` or `git checkout main` - depends what's the baseline branch for the repostiry 
@@ -151,7 +153,7 @@ Once we cloned the repository, it stays in our computer. However, other people h
 
 There are many instances of git web hosting interfaces like [Codeberrg](https://codeberg.org/), [GitLab](https://about.gitlab.com/), [NoLog](https://code.nolog.cz/) and [Github](https://github.com). From privacy and free software point of view, Codeberg or NoLog may be the best options. I will use Github for this example as this is where this repository lives and it's the most commonly used one. 
 
-I will demonstrate adding this file to the repository, using the [flow documented above](#simple-work-flow). Because I already have the repostory, I skip the [download](#download-git-repository) and [configure](#configure-git) partsa and go straight to it.
+I will demonstrate adding this file to the repository, using the [flow documented above](#simple-work-flow). Because I already have the repository, I skip the [download](#download-git-repository) and [configure](#configure-git) partsa and go straight to it.
 
 You can use the in-build terminal in your VS Codium or just any terminal
 
@@ -227,8 +229,11 @@ remote:
 To ssh://github_serinko/serinko/gizmo.git
  * [new branch]      feature/ssh-git-101-tutorial -> feature/ssh-git-101-tutorial
 ```
-- Note the message with the generated link: [https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutorial(https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutorial)]
-
+- Pay a special attention to the message with the generated link:
+```
+remote: Create a pull request for 'feature/ssh-git-101-tutorial' on GitHub by visiting:
+remote:      https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutorial
+```
 7. Create a Pull Request (PR): Visit the Github url and edit the PR description:
 - On the first landing, I can see initial rather empty description
 ![](images/github-pr-landing-view)
@@ -238,13 +243,25 @@ To ssh://github_serinko/serinko/gizmo.git
     - If the repo had a reviewer I would chose them
     - Added a Label
     - Ensure that comparison on top is to the right base branch where I eventually want to merge to
-    - Change `Create pull request` to `Draft pull request` as I do want to publish this state but don't want it to be reviewed just yet
+    - Change `Create pull request` to `Draft pull request` (as I do want to publish this state but don't want it to be reviewed just yet) and click on it
 - The result
 
 ![](images/github-pr-edited-view)
 
-8. Finish my works: save, add (as I created a new dir with images isnce the last commits), commit, push ... repeat steps above as many times as I need on as many files within the repo as needed
+8. Finish my works: save, add (as I created a new dir with images isnce the last commits), commit, push, check status ... repeat steps above as many times as I need on as many files within the repo as needed
 
 9. Click on `Ready for Review`
 
 10. Notify the reviewer and wait for their comments if there is something to be changed
+
+11. When you get a review, see what has to be addressed
+
+![](images/github-review-comments.png)
+
+12. Make changes in your local files, save, commit, push - then go back to the Pull Request page - in our case the url is: [https://github.com/serinko/gizmo/pull/1](https://github.com/serinko/gizmo/pull/1) and Resolve all conversations.
+
+13. Merge the PR: If all tests on Github pass and your PR was approoved, click on Merge button, chosing `Squash and merge` from the drop down menu.
+
+![](images/squash-merge.png)
+
+**Now the changes are part of the base branch!**
