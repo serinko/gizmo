@@ -254,7 +254,7 @@ remote:      https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutor
 
 10. Notify the reviewer and wait for their comments if there is something to be changed
 
-11. When you get a review, see what has to be addressed
+11. When you get a review, see what has to be addressed, the comments should be descriptive and are always paired with the file name and line.
 
 ![](images/github-review-comments.png)
 
