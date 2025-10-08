@@ -92,9 +92,16 @@ Most Linux based systems already have git installed by default, check it out wit
 git --version
 ```
 
-If git doesn't exist in your system, [download and install it](https://git-scm.com/downloads), or use your package management system (the place from where you install tools). For Debian based systems run this command from terminal:
+If git doesn't exist in your system, [download and install it](https://git-scm.com/downloads), or use your package management system (the place from where you install tools). You can also install it via terminal
+
+- Debian based systems git install command:
 ```sh
 sudo apt install git
+```
+
+- MacOS command to install command line tools:
+```sh
+xcode-select --install
 ```
 
 ### Download git Repository
@@ -110,34 +117,36 @@ To download new repository (`clone`) follow these steps:
 ```sh
 git clone git@<REPOSTIORY_URL>:<USER>/<REPO>.git
 ```
-- Example of cloning this repo would be:
+- Example of cloning this repo:
 ```sh
 git clone git@github.com:serinko/gizmo.git
 ```
+- Example of cloning a Nym repo:
+```sh
+git clone git@github.com:nymtech/nym.git
+```
 - Now you will have a repository root directory (in this case called `gizmo`) in the directory from where you cloned it
-- You can browse, open and edit any file from that repository directly in your computer
+- You can browse, open and edit any file from that repository directly in your computer without internet connection
 
 ### Configure git
 
-**A quick git configuration of per each repository is a good convention to follow as it prevents default behaviour, especially to allow for different identities across multiple repositories. Without this little tweak, all repositories will use the global system values stored at `$HOME/.gitconfig`.** 
+**A quick git configuration (per each repository) is a good convention to follow as it prevents default git behaviour applying across your entire system, especially to allow for different identities across multiple repositories. Without this little tweak, all repositories will use the global system values stored at `$HOME/.gitconfig`.** 
 
 Right after you download the repository, configure it by tweaking a file stored at `<REPOSITORY_ROOT_FOLDER>.git/config` (in our case `gizmo/.git/config`). 
 
-> **Note:** A nickname and email is visible by other contributors and in case of a public repo - by everyone. 
+> **WARNING:** A nickname and email is visible by other contributors and in case of a public repo - by everyone on the internet. 
 
 To configure your nickname and email, follow these steps:
 
-- Navigate to the root directory of the repository and open the `.git/config` in your favourite text editor. 
+- Navigate to the root directory of the repository and open the `.git/config` in your favourite text editor 
 
-- There should be a part called `[user]`, looking like this:
+- There should be a part called `[user]`, - in case this block is not in the config file, copy-paste it there with your own values:
 ```toml
 [user]
-        email = some@email.me
-        name = serinko
+        email = <ANY_EMAIL>
+        name = <ANY_NICK_NAME>
 ```
 - Change the values to the ones you want to have displayed next to your commits in this particular repository
-
-- In case this block is not in the config file, copy-paste it there with your own values
 
 - Save and exit
 
@@ -161,17 +170,62 @@ To configure your nickname and email, follow these steps:
 
 Once we cloned the repository, it stays in our computer. However, other people have been making changes on their computers, pushing it up to the remote. Therefore for this to work in the cleanest way possible, we need to follow a common logic. In the simplest form it goes like this:
 
-1. `git status` - Always start with informing yourself about the current state of the repository. In case your status shows your last working branch - make sure to switch to the main working one first:
-- `git checkout <MAIN_COMMON_BRANCH>` - For example `git checkout master` or `git checkout main` - depends what's the base branch for the given repository 
-2. `git pull` - Pull the current state of the common branch from the remote
-3. `git checkout -b "<NEW_BRANCH_NAME>"` - Branch off from the latest common state into your own branch
-4. Make changes on files and save them
-5. If you added or removed files run `git add .` from the root repo directory
-6. `git commit -am "<SHORT_DESCRIPTION>"` - After every significant change and file save, record it to git using commits
-7. Repeat steps 4-6 as many times as needed
-8. `git status` - Check your statur before you push commits upstream in the next step 
-9. `git push origin <NEW_BRANCH_NAME>` - When you want your branch to be visible to others (or public in case of public repo) push the changes up
-10. Create a Pull request - described in the example flow right under
+1. ***Status*** - Always start with informing yourself about the current state of the repository:
+```sh
+git status
+```
+
+2. **Checkout** - In case your status shows other branch than you expect (ie your last working branch) - make sure to switch to the base branch first:
+```sh
+git checkout <MAIN_COMMON_BRANCH>
+
+#For example:
+git checkout master
+#or
+git checkout main
+#or
+git checkout develop
+#depends what's the base branch for the given repository 
+```
+
+3. ***Pull*** - Pull the current state of the common branch from the remote:
+```sh
+git pull
+```
+
+4. ***Branch off*** - Fork off from the latest common state into your own new branch:
+```sh
+git checkout -b "<NEW_BRANCH_NAME>"
+```
+
+5. Make your changes (like writing or edits) and save them
+
+6. ***Add*** - If you added or removed files run 
+```sh
+# from the root directory of the repo
+git add .
+#or using the relative path to file
+git add tutorials/ssh_git_101.md
+```
+
+7. ***Commit*** - After every significant change and file save, record it to git using commits:
+```sh
+git commit -am "<SHORT_DESCRIPTION>"
+```
+
+8. Repeat steps 4-6 as many times as needed
+
+9. ***Status*** - Check your statur before you push commits upstream in the next step
+```sh
+git status
+``` 
+
+10. ***Push***9.  When you want your branch to be visible to others (or public in case of public repo) push the changes up the stream
+```sh
+git push origin <NEW_BRANCH_NAME>`
+```
+
+11. ***PR*** - Create a Pull request - described in the example flow right under
 
 #### Example: git Flow with Github
 
@@ -185,7 +239,7 @@ For demonstration, I will demonstrate the flow by adding this very guide to the 
 ```sh
 cd $HOME/src/gizmo
 ```
-> **Tip:** Command `cd` stands for *change directory* and it's one of the most commonly used terminal commands. It's always handy to know [fundamental shell tools / commands](https://www.digitalocean.com/community/tutorials/linux-commands)
+> **Tip:** Command `cd` stands for *change directory* and it's one of the most commonly used terminal commands. It's always handy to know [fundamental shell tools & commands](https://www.digitalocean.com/community/tutorials/linux-commands).
 
 2. `git status` to check the repository status, my output is:
 ```
@@ -298,6 +352,12 @@ remote:      https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutor
 
 To make this work with as little hick-ups as possible, make sure that you match with the convention culture in the team you collaborate with. Some of useful tips may be:
 
-- Before you create your own branch (`git checkout -b <NEW_BRANCH_NAME>`), make sure that you are on the branch from which you want to fork off, pulled it's latest state and your status is clean
+- Before you create your own branch (`git checkout -b <NEW_BRANCH_NAME>`), make sure that you are on the branch from which you want to fork off and that you pulled its latest state and your status is clean
 
 - Learn good commit description convention, either by asking senior people in the team for advice or applyting [something like this](https://www.conventionalcommits.org/en/v1.0.0/)
+
+- Do *not* work on the same file and lines like someone else - this is not a pad. You are at risk to expose you and the other contributor to [merge conflict](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts).
+
+- Merge branch upstream (to the base one) only when there are no merge conflicts, you were reviewed by the repo admin and there are no failed checks
+
+- Do *not* start to work on a file edit before you checked your status and you are sure that you are on the branch on which you want to work on.
