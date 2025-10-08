@@ -285,7 +285,7 @@ remote:      https://github.com/serinko/gizmo/pull/new/feature/ssh-git-101-tutor
 
 ![](images/github-review-comments.png)
 
-12. Make changes in local files, save them, commit, push - then go back to the Pull Request page - in this case the url is: [https://github.com/serinko/gizmo/pull/1](https://github.com/serinko/gizmo/pull/1) and *Resolve all conversations*
+12. Make changes in local files, save them, commit, push - then go back to the Pull Request page (in this case the url is: [`https://github.com/serinko/gizmo/pull/1`](https://github.com/serinko/gizmo/pull/1) ) and *Resolve all conversations*
 
 13. Merge the PR: If all tests on Github pass and the PR is approoved, click on Merge button, chosing `Squash and merge` from the drop down menu.
 
