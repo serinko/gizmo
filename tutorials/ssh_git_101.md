@@ -141,7 +141,7 @@ To configure your nickname and email, follow these steps:
 - Navigate to the root directory of the repository and open the `.git/config` in your favourite text editor 
 
 - There should be a part called `[user]`, - in case this block is not in the config file, copy-paste it there with your own values:
-```toml
+```ini
 [user]
         email = <ANY_EMAIL>
         name = <ANY_NICK_NAME>
@@ -220,7 +220,7 @@ git commit -am "<SHORT_DESCRIPTION>"
 git status
 ``` 
 
-10. ***Push***9.  When you want your branch to be visible to others (or public in case of public repo) push the changes up the stream
+10. ***Push***.  When you want your branch to be visible to others (or public in case of public repo) push the changes up the stream
 ```sh
 git push origin <NEW_BRANCH_NAME>`
 ```
