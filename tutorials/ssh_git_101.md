@@ -169,8 +169,9 @@ Once we cloned the repository, it stays in our computer. However, other people h
 5. If you added or removed files run `git add .` from the root repo directory
 6. `git commit -am "<SHORT_DESCRIPTION>"` - After every significant change and file save, record it to git using commits
 7. Repeat steps 4-6 as many times as needed
-8. `git push origin <NEW_BRANCH_NAME>` - When you want your branch to be visible to others (or public in case of puclic repo) push the changes up
-9. Create a Pull request - described in the example flow right under
+8. `git status` - Check your statur before you push commits upstream in the next step 
+9. `git push origin <NEW_BRANCH_NAME>` - When you want your branch to be visible to others (or public in case of public repo) push the changes up
+10. Create a Pull request - described in the example flow right under
 
 #### Example: git Flow with Github
 
