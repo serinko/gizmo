@@ -228,7 +228,7 @@ git commit -am "intialise ssh git tutorial"
  create mode 100644 tutorials/ssh_git_101.md
 ```
 
-5. Do more work - like writing this sentence and following points and follow the flow of:
+5. Do more work (like writing this point) and follow the cycle of:
 - Save files
 - Add if needed
 - Commit changes
